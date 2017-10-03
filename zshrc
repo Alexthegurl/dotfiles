@@ -1,7 +1,18 @@
+export PATH="/usr/local/bin:$PATH"
 # load custom executable functions
 for function in ~/.zsh/functions/*; do
   source $function
 done
+
+#History Configuration
+##############################################################################
+HISTSIZE=5000               #How many lines of history to keep in memory
+HISTFILE=~/.zsh_history     #Where to save history to disk
+SAVEHIST=5000               #Number of history entries to save to disk
+#HISTDUP=erase               #Erase duplicates in the history file
+setopt    appendhistory     #Append history to the history file (no overwriting)
+setopt    sharehistory      #Share history across terminals
+setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
 
 # extra files in ~/.zsh/configs/pre , ~/.zsh/configs , and ~/.zsh/configs/post
 # these are loaded first, second, and third, respectively.
@@ -37,6 +48,8 @@ _load_settings() {
     fi
   fi
 }
+
+
 _load_settings "$HOME/.zsh/configs"
 
 # Local config
@@ -44,3 +57,11 @@ _load_settings "$HOME/.zsh/configs"
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - --no-rehash)"
+export EDITOR="atom --wait"
+
+alias e="atom"
+alias work="cd /Users/aorigitano/Desktop/Apprentice/securehalo"
+export BUNDLER_EDITOR="atom --wait"
